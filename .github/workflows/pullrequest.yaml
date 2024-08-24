@@ -36,10 +36,12 @@ jobs:
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
-      - name: setup-chromedriver
-        uses: nanasess/setup-chromedriver@v2.2.2
-        with:
-            chromedriver-version: 'latest'
+      - name: Install ChromeDriver
+        run: |
+          wget https://storage.googleapis.com/chrome-for-testing-public/128.0.6613.84/linux64/chrome-linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Build and Run Tests
         run: mvn clean test # This command will compile the code and run the TestNG tests
