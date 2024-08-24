@@ -29,6 +29,13 @@ jobs:
           distribution: 'oracle'
           cache: 'maven' # Caches Maven dependencies
 
+      - name: Install Google Chrome
+        run: |
+          sudo apt update
+          sudo apt install -y wget
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install -y ./google-chrome-stable_current_amd64.deb
+
       - name: Build and Run Tests
         run: mvn clean test # This command will compile the code and run the TestNG tests
 

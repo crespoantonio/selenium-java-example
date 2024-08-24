@@ -12,7 +12,7 @@ public class DriverFactory {
         if(driver == null) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless=new");
-            options.addArguments("--no-sandbox");
+            //options.addArguments("--no-sandbox");
             driver = new ChromeDriver(options);
         }
         return driver;
@@ -20,6 +20,7 @@ public class DriverFactory {
 
     public static void quitDriver(){
         if(driver != null) {
+            driver.close();
             driver.quit();
             driver = null;
         }

@@ -16,7 +16,7 @@ public class MyAccountPage {
     // Constructor to initialize WebDriver and WebDriverWait
     public MyAccountPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Adjust timeout as necessary
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // Adjust timeout as necessary
     }
 
     // Private methods to locate elements
