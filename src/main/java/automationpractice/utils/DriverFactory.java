@@ -12,6 +12,8 @@ public class DriverFactory {
         if(driver == null) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--start-maximized");
+            options.addArguments("--headless");
+            options.addArguments("--no-sandbox");
             driver = new ChromeDriver();
         }
         return driver;
