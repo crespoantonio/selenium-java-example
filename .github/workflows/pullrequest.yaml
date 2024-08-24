@@ -20,13 +20,13 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '21' # Specify the Java version you need
-          distribution: 'temurin'
+          distribution: 'oracle'
 
       - name: Install Maven
         uses: actions/setup-java@v4
         with:
           java-version: '21' # Maven will use this JDK
-          distribution: 'temurin'
+          distribution: 'oracle'
           cache: 'maven' # Caches Maven dependencies
 
       - name: Build and Run Tests
