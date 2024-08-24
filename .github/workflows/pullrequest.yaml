@@ -1,0 +1,40 @@
+name: On PR Approved to Main
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11' # Specify your Java version here
+          distribution: 'adopt-openjdk'
+
+      - name: Install Maven
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11' # Maven will use this JDK
+          distribution: 'adopt-openjdk'
+          cache: 'maven' # Caches Maven dependencies
+
+      - name: Build and Run Tests
+        run: mvn clean test # This command will compile the code and run the TestNG tests
+
+      - name: Publish Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: target/surefire-reports # Maven Surefire Plugin generates test reports in this directory
