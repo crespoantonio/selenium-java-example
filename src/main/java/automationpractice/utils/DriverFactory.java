@@ -14,7 +14,7 @@ public class DriverFactory {
         if(driver == null) {
             FirefoxOptions options = new FirefoxOptions();
             //ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless=new");
+            options.addArguments("-headless");
             //options.addArguments("--no-sandbox");
             //driver = new ChromeDriver(options);
             driver = new FirefoxDriver(options);
