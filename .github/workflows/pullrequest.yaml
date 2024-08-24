@@ -17,16 +17,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          java-version: '11' # Specify your Java version here
-          distribution: 'adopt-openjdk'
+          java-version: '21' # Specify the Java version you need
+          distribution: 'temurin'
 
       - name: Install Maven
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          java-version: '11' # Maven will use this JDK
-          distribution: 'adopt-openjdk'
+          java-version: '21' # Maven will use this JDK
+          distribution: 'temurin'
           cache: 'maven' # Caches Maven dependencies
 
       - name: Build and Run Tests
@@ -34,7 +34,7 @@ jobs:
 
       - name: Publish Test Results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: target/surefire-reports # Maven Surefire Plugin generates test reports in this directory
