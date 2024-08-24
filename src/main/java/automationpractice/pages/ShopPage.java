@@ -4,13 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ShopPage {
     private WebDriver driver;
     private Actions actions;
+    private WebDriverWait wait;
 
     // Locator strings
     private String productsOnSaleLocator = "ins .woocommerce-Price-amount";
@@ -20,47 +24,48 @@ public class ShopPage {
     public ShopPage(WebDriver driver) {
         this.driver = driver;
         this.actions = new Actions(driver);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // Adjust timeout as necessary
     }
 
     // Getters for locators
     private WebElement navigation() {
-        return driver.findElement(By.cssSelector(".woocommerce-breadcrumb"));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".woocommerce-breadcrumb")));
     }
 
     private WebElement fromFilterPrice() {
-        return driver.findElement(By.cssSelector(".price_slider>span:nth-child(2)"));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".price_slider>span:nth-child(2)")));
     }
 
     private WebElement toFilterPrice() {
-        return driver.findElement(By.cssSelector(".price_slider>span:nth-child(3)"));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".price_slider>span:nth-child(3)")));
     }
 
     private WebElement filterButton() {
-        return driver.findElement(By.cssSelector(".price_slider_amount > .button"));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".price_slider_amount > .button")));
     }
 
     private WebElement fromPriceLabel() {
-        return driver.findElement(By.cssSelector(".from"));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".from")));
     }
 
     private WebElement toPriceLabel() {
-        return driver.findElement(By.cssSelector(".to"));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".to")));
     }
 
     private List<WebElement> priceProductsOnSale() {
-        return driver.findElements(By.cssSelector(productsOnSaleLocator));
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(productsOnSaleLocator)));
     }
 
     private List<WebElement> priceProductsNotOnSale() {
-        return driver.findElements(By.cssSelector(productsNotOnSaleLocator));
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(productsNotOnSaleLocator)));
     }
 
     private WebElement productCategoryList() {
-        return driver.findElement(By.cssSelector(".product-categories"));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".product-categories")));
     }
 
     private List<WebElement> listOfProductsOnPage() {
-        return driver.findElements(By.cssSelector(".products.masonry-done > li"));
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".products.masonry-done > li")));
     }
 
     // Click Home
