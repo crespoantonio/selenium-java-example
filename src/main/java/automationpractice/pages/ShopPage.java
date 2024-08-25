@@ -1,5 +1,6 @@
 package automationpractice.pages;
 
+import automationpractice.utils.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import java.time.Duration;
 import java.util.List;
 
 public class ShopPage {
@@ -24,7 +24,7 @@ public class ShopPage {
     public ShopPage(WebDriver driver) {
         this.driver = driver;
         this.actions = new Actions(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(60)); // Adjust timeout as necessary
+        this.wait = DriverFactory.getWait(); // Adjust timeout as necessary
     }
 
     // Getters for locators
