@@ -47,7 +47,9 @@
                 <version>3.4.0</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/chrome-testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/firefox-testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/edge-testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

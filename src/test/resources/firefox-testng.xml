@@ -1,0 +1,8 @@
+<suite name="Firefox">
+    <test name="Firefox">
+        <parameter name="browser" value="firefox"/>
+        <packages>
+            <package name="automationpractice.tests"/>
+        </packages>
+    </test>
+</suite>
