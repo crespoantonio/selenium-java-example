@@ -24,7 +24,7 @@ public class ShopPage {
     public ShopPage(WebDriver driver) {
         this.driver = driver;
         this.actions = new Actions(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // Adjust timeout as necessary
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(60)); // Adjust timeout as necessary
     }
 
     // Getters for locators

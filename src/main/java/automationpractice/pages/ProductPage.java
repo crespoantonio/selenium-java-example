@@ -16,7 +16,7 @@ public class ProductPage {
     // Constructor to initialize WebDriver and WebDriverWait
     public ProductPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // Adjust timeout as necessary
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(60)); // Adjust timeout as necessary
     }
 
     // Private method to locate the "Add to Basket" button
