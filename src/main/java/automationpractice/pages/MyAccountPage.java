@@ -1,12 +1,12 @@
 package automationpractice.pages;
 
+import automationpractice.utils.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
 public class MyAccountPage {
 
@@ -16,7 +16,7 @@ public class MyAccountPage {
     // Constructor to initialize WebDriver and WebDriverWait
     public MyAccountPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(60)); // Adjust timeout as necessary
+        this.wait = DriverFactory.getWait(); // Adjust timeout as necessary
     }
 
     // Private methods to locate elements

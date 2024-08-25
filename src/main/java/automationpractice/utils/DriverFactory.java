@@ -7,11 +7,15 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Parameters;
+
+import java.time.Duration;
 
 public class DriverFactory {
 
     private static WebDriver driver;
+    private static WebDriverWait wait;
 
     @Parameters("browser")
     public static WebDriver getDriver(String browser) {
@@ -37,8 +41,16 @@ public class DriverFactory {
                 default:
                     throw new IllegalArgumentException("Browser not supported: " + browser);
             }
+            wait = new WebDriverWait(driver, Duration.ofSeconds(60)); // Default timeout
         }
         return driver;
+    }
+
+    public static WebDriverWait getWait() {
+        if (wait == null) {
+            throw new IllegalStateException("WebDriverWait is not initialized. Ensure that getDriver() is called first.");
+        }
+        return wait;
     }
 
     public static void quitDriver(){
