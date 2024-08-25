@@ -15,9 +15,10 @@ public class MyAccountTest {
     String username = "tonios89test@mailinator.com";
     String password = "Tonios89test!@";
 
+    @Parameters("browser")
     @BeforeMethod
-    public void setUp() {
-        driver = DriverFactory.getDriver();
+    public void setUp(@Optional("chrome") String browser) {
+        driver = DriverFactory.getDriver(browser);
         driver.get("https://practice.automationtesting.in/");
         homePage = new HomePage(driver);
         myAccountPage = new MyAccountPage(driver);
