@@ -6,9 +6,7 @@ import automationpractice.pages.ShopPage;
 import automationpractice.utils.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.Random;
 
@@ -19,9 +17,10 @@ public class HomePageTest {
     private ShopPage shopPage;
     private ProductPage productPage;
 
+    @Parameters("browser")
     @BeforeMethod
-    public void setUp() {
-        driver = DriverFactory.getDriver();
+    public void setUp(@Optional("chrome") String browser) {
+        driver = DriverFactory.getDriver(browser);
         driver.get("https://practice.automationtesting.in/");
         homePage = new HomePage(driver);
         shopPage = new ShopPage(driver);
