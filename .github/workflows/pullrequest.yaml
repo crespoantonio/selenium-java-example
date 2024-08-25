@@ -35,6 +35,15 @@ jobs:
             chrome-version: 127
             install-chromedriver: true
 
+      - name: Install Firefox
+        uses: browser-actions/setup-firefox@v1
+
+      - name: Install GeckoDriver
+        uses: browser-actions/setup-geckodriver@latest
+
+      - name: Install Edge
+        uses: browser-actions/setup-edge@v1
+
       - name: Build and Run Tests
         run: mvn clean test # This command will compile the code and run the TestNG tests
 
