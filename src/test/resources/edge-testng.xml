@@ -1,0 +1,8 @@
+<suite name="Edge">
+    <test name="Edge">
+        <parameter name="browser" value="edge"/>
+        <packages>
+            <package name="automationpractice.tests"/>
+        </packages>
+    </test>
+</suite>
