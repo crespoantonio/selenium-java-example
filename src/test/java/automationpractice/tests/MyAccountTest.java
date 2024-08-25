@@ -19,14 +19,14 @@ public class MyAccountTest {
     @BeforeMethod
     public void setUp(@Optional("chrome") String browser) {
         driver = DriverFactory.getDriver(browser);
-        driver.get("https://practice.automationtesting.in/");
+        driver.get("https://practice.automationtesting.in/my-account/");
         homePage = new HomePage(driver);
         myAccountPage = new MyAccountPage(driver);
     }
 
     @Test
     public void testLoginWithValidUsernameAndPassword() {
-        homePage.clickMyAccountMenu();
+        //homePage.clickMyAccountMenu();
         myAccountPage.logIn(username, password);
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().isDisplayed(), "Login welcome message should be displayed");
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().getText().contains("tonios89test"), "Welcome message should include 'tonios89test'");
@@ -34,7 +34,7 @@ public class MyAccountTest {
 
     @Test
     public void testLoginWithIncorrectUsernameAndPassword() {
-        homePage.clickMyAccountMenu();
+        //homePage.clickMyAccountMenu();
         myAccountPage.logIn("prueba", "prueba");
         Assert.assertTrue(myAccountPage.getErrorMessage().isDisplayed(), "Error message should be displayed");
         Assert.assertTrue(myAccountPage.getLoginSection().isDisplayed(), "Login section should be visible");
@@ -42,7 +42,7 @@ public class MyAccountTest {
 
     @Test
     public void testPasswordShouldBeMasked() {
-        homePage.clickMyAccountMenu();
+        //homePage.clickMyAccountMenu();
         myAccountPage.getUsernameLabel().sendKeys(username);
         myAccountPage.getPasswordLabel().sendKeys(password);
         Assert.assertEquals(myAccountPage.getPasswordLabel().getAttribute("type"), "password", "Password field should be masked");
@@ -50,7 +50,7 @@ public class MyAccountTest {
 
     @Test
     public void testAccountDetails() {
-        homePage.clickMyAccountMenu();
+        //homePage.clickMyAccountMenu();
         myAccountPage.logIn(username, password);
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().isDisplayed(), "Login welcome message should be displayed");
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().getText().contains("tonios89test"), "Welcome message should include 'tonios89test'");
@@ -61,7 +61,7 @@ public class MyAccountTest {
 
     @Test
     public void testLogOut() {
-        homePage.clickMyAccountMenu();
+        //homePage.clickMyAccountMenu();
         myAccountPage.logIn(username, password);
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().isDisplayed(), "Login welcome message should be displayed");
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().getText().contains("tonios89test"), "Welcome message should include 'tonios89test'");
