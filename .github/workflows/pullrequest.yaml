@@ -29,6 +29,11 @@ jobs:
           distribution: 'oracle'
           cache: 'maven' # Caches Maven dependencies
 
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+            install-chromedriver: true
+
       - name: Build and Run Tests
         run: mvn clean test # This command will compile the code and run the TestNG tests
 
