@@ -1,6 +1,5 @@
 package automationpractice.tests;
 
-import automationpractice.pages.HomePage;
 import automationpractice.pages.MyAccountPage;
 import automationpractice.utils.DriverFactory;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +9,6 @@ import org.testng.annotations.*;
 public class MyAccountTest {
 
     private WebDriver driver;
-    private HomePage homePage;
     private MyAccountPage myAccountPage;
     String username = "tonios89test@mailinator.com";
     String password = "Tonios89test!@";
@@ -20,13 +18,11 @@ public class MyAccountTest {
     public void setUp(@Optional("chrome") String browser) {
         driver = DriverFactory.getDriver(browser);
         driver.get("https://practice.automationtesting.in/my-account/");
-        homePage = new HomePage(driver);
         myAccountPage = new MyAccountPage(driver);
     }
 
     @Test
     public void testLoginWithValidUsernameAndPassword() {
-        //homePage.clickMyAccountMenu();
         myAccountPage.logIn(username, password);
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().isDisplayed(), "Login welcome message should be displayed");
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().getText().contains("tonios89test"), "Welcome message should include 'tonios89test'");
@@ -34,7 +30,6 @@ public class MyAccountTest {
 
     @Test
     public void testLoginWithIncorrectUsernameAndPassword() {
-        //homePage.clickMyAccountMenu();
         myAccountPage.logIn("prueba", "prueba");
         Assert.assertTrue(myAccountPage.getErrorMessage().isDisplayed(), "Error message should be displayed");
         Assert.assertTrue(myAccountPage.getLoginSection().isDisplayed(), "Login section should be visible");
@@ -42,7 +37,6 @@ public class MyAccountTest {
 
     @Test
     public void testPasswordShouldBeMasked() {
-        //homePage.clickMyAccountMenu();
         myAccountPage.getUsernameLabel().sendKeys(username);
         myAccountPage.getPasswordLabel().sendKeys(password);
         Assert.assertEquals(myAccountPage.getPasswordLabel().getAttribute("type"), "password", "Password field should be masked");
@@ -50,7 +44,6 @@ public class MyAccountTest {
 
     @Test
     public void testAccountDetails() {
-        //homePage.clickMyAccountMenu();
         myAccountPage.logIn(username, password);
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().isDisplayed(), "Login welcome message should be displayed");
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().getText().contains("tonios89test"), "Welcome message should include 'tonios89test'");
@@ -61,7 +54,6 @@ public class MyAccountTest {
 
     @Test
     public void testLogOut() {
-        //homePage.clickMyAccountMenu();
         myAccountPage.logIn(username, password);
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().isDisplayed(), "Login welcome message should be displayed");
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().getText().contains("tonios89test"), "Welcome message should include 'tonios89test'");
