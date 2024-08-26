@@ -1,6 +1,5 @@
 package automationpractice.tests;
 
-import automationpractice.pages.HomePage;
 import automationpractice.pages.ShopPage;
 import automationpractice.utils.DriverFactory;
 import org.openqa.selenium.WebDriver;
@@ -10,17 +9,14 @@ import org.testng.annotations.*;
 public class ShopTest {
 
     private WebDriver driver;
-    private HomePage homePage;
     private ShopPage shopPage;
 
     @Parameters("browser")
     @BeforeMethod
     public void setUp(@Optional("chrome") String browser) {
         driver = DriverFactory.getDriver(browser);
-        driver.get("https://practice.automationtesting.in/");
-        homePage = new HomePage(driver);
+        driver.get("https://practice.automationtesting.in/shop/");
         shopPage = new ShopPage(driver);
-        homePage.clickShopMenu();
     }
 
     @Test

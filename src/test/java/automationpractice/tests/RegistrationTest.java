@@ -1,6 +1,5 @@
 package automationpractice.tests;
 
-import automationpractice.pages.HomePage;
 import automationpractice.pages.MyAccountPage;
 import automationpractice.types.IUserInfo;
 import automationpractice.utils.DriverFactory;
@@ -12,7 +11,6 @@ import org.testng.annotations.*;
 public class RegistrationTest {
 
     private WebDriver driver;
-    private HomePage homePage;
     private MyAccountPage myAccountPage;
     private Helpers helpers;
 
@@ -20,11 +18,9 @@ public class RegistrationTest {
     @BeforeMethod
     public void setUp(@Optional("chrome") String browser) {
         driver = DriverFactory.getDriver(browser);
-        driver.get("https://practice.automationtesting.in/");
-        homePage = new HomePage(driver);
+        driver.get("https://practice.automationtesting.in/my-account/");
         myAccountPage = new MyAccountPage(driver);
         helpers = new Helpers();
-        homePage.clickMyAccountMenu();
     }
 
     @Test
