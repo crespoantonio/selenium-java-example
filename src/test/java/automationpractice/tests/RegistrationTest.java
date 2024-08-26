@@ -4,7 +4,6 @@ import automationpractice.pages.MyAccountPage;
 import automationpractice.types.IUserInfo;
 import automationpractice.utils.DriverFactory;
 import automationpractice.utils.Helpers;
-import automationpractice.utils.ScreenshotManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -14,7 +13,6 @@ public class RegistrationTest {
     private WebDriver driver;
     private MyAccountPage myAccountPage;
     private Helpers helpers;
-    private ScreenshotManager screenshotManager;
 
     @Parameters("browser")
     @BeforeMethod
@@ -23,14 +21,12 @@ public class RegistrationTest {
         driver.get("https://practice.automationtesting.in/my-account/");
         myAccountPage = new MyAccountPage(driver);
         helpers = new Helpers();
-        screenshotManager = new ScreenshotManager(driver);
     }
 
     @Test
     public void testSignIn() {
         IUserInfo user = helpers.createsNewUser();
         myAccountPage.registerNewUser(user.getEmail(), user.getPassword());
-        screenshotManager.takeScreenshot();
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().isDisplayed(), "Login welcome message should be displayed");
         Assert.assertTrue(myAccountPage.getLogInMessageWelcome().getText().contains(user.getName().toLowerCase() + "." + user.getLastName().toLowerCase()), "Welcome message should include user name and last name");
     }
