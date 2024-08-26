@@ -33,8 +33,7 @@ public class RegistrationTest {
 
     @Test
     public void testRegistrationWithInvalidEmail() {
-        IUserInfo user = helpers.createsNewUser();
-        myAccountPage.registerNewUser(user.getName() + "@lamd", user.getPassword());
+        myAccountPage.registerNewUser("pedro.mercado", "Tonios89test!@");
         Assert.assertTrue(myAccountPage.getErrorMessage().isDisplayed(), "Error message should be displayed");
         Assert.assertTrue(myAccountPage.getErrorMessage().getText().contains("Error: Please provide a valid email address."), "Error message should include 'Please provide a valid email address.'");
     }
