@@ -113,21 +113,30 @@ public class MyAccountPage {
         return messageError();
     }
 
-    public void registerNewUser(String username, String password) {
-        WebElement emailField = registerEmailAddressLabel();
-        WebElement passwordField = registerPasswordLabel();
-        WebElement registerBtn = registerButton();
+    private static void sendKeysSlowly(WebElement element, String text) throws InterruptedException {
+        for (char c : text.toCharArray()) {
+            element.sendKeys(String.valueOf(c));
+            Thread.sleep(300); // Delay between each key press
+        }
+    }
 
+
+    public void completeFieldsForNewUser(String username, String password) {
         if (username != null) {
-            emailField.sendKeys(username);
+            registerEmailAddressLabel().sendKeys(username);
+            if (password != null) {
+                try {
+                    sendKeysSlowly(registerPasswordLabel(), password); // Slowly type password
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
-        if (password != null) {
-            passwordField.sendKeys(password);
-        }
+    }
 
-        emailField.click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(registerBtn));
-        registerBtn.click();
+    public void registerNewUser(String username, String password) {
+        completeFieldsForNewUser(username, password);
+        wait.until(ExpectedConditions.elementToBeClickable(registerButton()));
+        registerButton().click();
     }
 }
