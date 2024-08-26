@@ -113,6 +113,7 @@ public class MyAccountPage {
         return messageError();
     }
 
+    //Create this because the password input is having issues if you send the password all at once.
     private static void sendKeysSlowly(WebElement element, String text) throws InterruptedException {
         for (char c : text.toCharArray()) {
             element.sendKeys(String.valueOf(c));
