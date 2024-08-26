@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 
 public class MyAccountPage {
 
@@ -123,7 +125,8 @@ public class MyAccountPage {
             passwordField.sendKeys(password);
         }
 
-        // Ensure the button is clickable before clicking
+        emailField.click();
+
         wait.until(ExpectedConditions.elementToBeClickable(registerBtn));
         registerBtn.click();
     }
