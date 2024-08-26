@@ -47,13 +47,6 @@ jobs:
       - name: Build and Run Tests
         run: mvn clean test # This command will compile the code and run the TestNG tests
 
-      - name: Upload screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
-          path: screenshots/*
-
       - name: Publish Test Results
         if: always()
         uses: actions/upload-artifact@v4
