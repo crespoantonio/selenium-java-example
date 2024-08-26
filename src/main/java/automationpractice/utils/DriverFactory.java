@@ -41,6 +41,9 @@ public class DriverFactory {
                 default:
                     throw new IllegalArgumentException("Browser not supported: " + browser);
             }
+
+            driver.manage().window().maximize();
+
             wait = new WebDriverWait(driver, Duration.ofSeconds(60)); // Default timeout
         }
         return driver;
